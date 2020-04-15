@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+                http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <bean id="accountService" class="kim.spe.service.impl.AccountServiceImpl">-->
+<!--          init-method="init"-->
+<!--          destroy-method="destroy"> -->
+<!--        <constructor-arg type="java.lang.String" name="name" value="查理" ></constructor-arg>-->
+<!--        <constructor-arg type="java.lang.Integer" name="age" value="18" ></constructor-arg>-->
+<!--        <constructor-arg type="java.util.Date" name="birthday" ref="now" ></constructor-arg>-->
+<!--        <property name="name" value="char"></property>-->
+<!--        <property name="age" value="18"></property>-->
+<!--        <property name="birthday" ref="now"></property>-->
+<!--        <property name="myStrs">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+
+        <property name="myList">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+
+        <property name="mySet">
+            <array>
+                <value>AAA</value>
+                <value>BBB</value>
+                <value>CCC</value>
+            </array>
+        </property>
+
+        <property name="myMap">
+            <map>
+                <entry key="key01" value="AAA"></entry>
+                <entry key="key02">
+                    <value>BBB</value>
+                </entry>
+            </map>
+        </property>
+
+        <property name="myProps">
+            <props>
+                <prop key="propKey03">CCC</prop>
+                <prop key="propKey04">DDD</prop>
+            </props>
+        </property>
+
+    </bean>
+-->
+<!--  new Date()  -->
+<!--    <bean id="now" class="java.util.Date"></bean>-->
+<!--    <bean id="accountDao" class="kim.spe.dao.impl.AccountDaoImpl"></bean>-->
+<!--    <bean id="instanceFactory" class="kim.spe.factory.InstanceFactory"></bean>-->
+<!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"></bean>-->
+<!--    <bean id="accountService" class="kim.spe.factory.StaticFactory" factory-method="getAccountService"></bean>-->
+    <context:component-scan base-package="kim.spe"></context:component-scan>
+<!--    <bean id="accountService" class="kim.spe.service.impl.AccountServiceImpl">-->
+<!--        <property name="accountDao" ref="accountDao"></property>-->
+<!--    </bean>-->
+<!--    <bean id="accountDao" class="kim.spe.dao.impl.AccountDaoImpl">-->
+<!--        <property name="runner" ref="queryRunner"></property>-->
+<!--    </bean>-->
+<!--    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
+<!--        <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
+<!--    </bean>-->
+<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
+<!--        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
+<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"></property>-->
+<!--        <property name="user" value="root"></property>-->
+<!--        <property name="password" value="123456"></property>-->
+<!--    </bean>-->
+
+</beans>
