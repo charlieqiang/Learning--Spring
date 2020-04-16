@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="kim.spe"></context:component-scan>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+<!--    <bean id="accountService" class="kim.spe.service.impl.AccountService"></bean>-->
+<!--    <bean id="logger" class="kim.spe.utils.Logger"></bean>-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="logPointcut" expression="execution(* kim.spe.service.*.*(..))"/>-->
+<!--        <aop:aspect id="" ref="logger">-->
+<!--            <aop:before method="printLog" pointcut="execution(public void kim.spe.service.impl.AccountService.saveAccount())"></aop:before>-->
+<!--            <aop:before method="beforePrintLog" pointcut-ref="logPointcut"></aop:before>-->
+<!--            <aop:after-returning method="afterReturningPrintLog" pointcut-ref="logPointcut"></aop:after-returning>-->
+<!--            <aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="logPointcut"></aop:after-throwing>-->
+<!--            <aop:after method="afterPrintLog" pointcut-ref="logPointcut"></aop:after>-->
+<!--            <aop:around method="aroundPringLog" pointcut-ref="logPointcut"></aop:around>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+</beans>
