@@ -27,7 +27,7 @@ public class JdbcConfig {
     public QueryRunner createQueryRunner(DataSource dataSource){
         return new QueryRunner(dataSource);
     }
-    @Bean(name = "dataSource")
+//    @Bean(name = "dataSource")
     public DataSource createDataSource(){
         try {
 

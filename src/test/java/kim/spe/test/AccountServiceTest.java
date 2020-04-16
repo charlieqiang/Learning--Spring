@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,12 +24,14 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringConfiguration.class)
-
+//@ContextConfiguration(classes = SpringConfiguration.class)
+@ContextConfiguration(locations = "classpath:bean.xml")
 public class AccountServiceTest {
+
 
 //    private ApplicationContext ac;
     @Autowired
+    @Qualifier("proxyAccountService")
     private IAccountService as = null;
 //    @Before
 //    public void init(){
@@ -37,52 +40,56 @@ public class AccountServiceTest {
 //
 //    }
     @Test
-    public void testFindAll() {
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-        List<Account> accounts = as.findAllAccount();
-        for (Account account : accounts){
-            System.out.println(account);
-        }
+    public void testTransfer() {
+        as.transfer("Bob","char",100f);
     }
-
-    @Test
-    public void testFindOne() {
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-//        IAccountService as = ac.getBean("accountService", IAccountService.class);
-        Account account = as.findAccountById(5);
-        System.out.println(account);
-    }
-
-    @Test
-    public void testSave() {
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-//        IAccountService as = ac.getBean("accountService", IAccountService.class);
-        Account account = new Account();
-        account.setLast_name("spring");
-        account.setMoney(5678f);
-        as.saveAccount(account);
+//    @Test
+//    public void testFindAll() {
+////        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+//        List<Account> accounts = as.findAllAccount();
+//        for (Account account : accounts){
+//            System.out.println(account);
+//        }
+//    }
+//
+//    @Test
+//    public void testFindOne() {
+////        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+////        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+////        IAccountService as = ac.getBean("accountService", IAccountService.class);
+//        Account account = as.findAccountById(5);
 //        System.out.println(account);
-    }
-
-    @Test
-    public void testUpdate() {
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-//        IAccountService as = ac.getBean("accountService", IAccountService.class);
-        Account account = as.findAccountById(5);
-        account.setMoney(23456f);
-        as.updateAccount(account);
-
-    }
-
-    @Test
-    public void testDelete() {
-//        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
-//        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
-//        IAccountService as = ac.getBean("accountService", IAccountService.class);
-        as.deleteAccount(5);
-//        System.out.println(account);
-    }
+//    }
+//
+//    @Test
+//    public void testSave() {
+////        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+////        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+////        IAccountService as = ac.getBean("accountService", IAccountService.class);
+//        Account account = new Account();
+//        account.setLast_name("spring");
+//        account.setMoney(5678f);
+//        as.saveAccount(account);
+////        System.out.println(account);
+//    }
+//
+//    @Test
+//    public void testUpdate() {
+////        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+////        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+////        IAccountService as = ac.getBean("accountService", IAccountService.class);
+//        Account account = as.findAccountById(5);
+//        account.setMoney(23456f);
+//        as.updateAccount(account);
+//
+//    }
+//
+//    @Test
+//    public void testDelete() {
+////        ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+////        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+////        IAccountService as = ac.getBean("accountService", IAccountService.class);
+//        as.deleteAccount(5);
+////        System.out.println(account);
+//    }
 }

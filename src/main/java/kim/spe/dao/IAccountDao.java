@@ -41,4 +41,10 @@ public interface IAccountDao {
      */
     void deleteAccount(Integer accountId);
 
+    /**
+     *
+     * @param accountName
+     * @return
+     */
+    Account findAccountByName(String accountName);
 }

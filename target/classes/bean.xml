@@ -3,11 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
                 http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/context
-                http://www.springframework.org/schema/context/spring-context.xsd">
+                http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/aop
+                http://www.springframework.org/schema/aop/spring-aop.xsd">
+
 
 <!--    <bean id="accountService" class="kim.spe.service.impl.AccountServiceImpl">-->
 <!--          init-method="init"-->
@@ -67,20 +71,41 @@
 <!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"></bean>-->
 <!--    <bean id="accountService" class="kim.spe.factory.StaticFactory" factory-method="getAccountService"></bean>-->
     <context:component-scan base-package="kim.spe"></context:component-scan>
-<!--    <bean id="accountService" class="kim.spe.service.impl.AccountServiceImpl">-->
-<!--        <property name="accountDao" ref="accountDao"></property>-->
-<!--    </bean>-->
-<!--    <bean id="accountDao" class="kim.spe.dao.impl.AccountDaoImpl">-->
-<!--        <property name="runner" ref="queryRunner"></property>-->
-<!--    </bean>-->
-<!--    <bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">-->
+
+    <bean id="proxyAccountService" factory-bean="beanFactory" factory-method="getAccountService"></bean>
+
+    <bean id="beanFactory" class="kim.spe.factory.BeanFactory">
+        <property name="accountService" ref="accountService"></property>
+        <property name="txManager" ref="txManager"></property>
+    </bean>
+    <bean id="accountService" class="kim.spe.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"></property>
+<!--        <property name="txManager" ref="txManager"></property>-->
+    </bean>
+
+<!--    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype"></bean>-->
+
+    <bean id="accountDao" class="kim.spe.dao.impl.AccountDaoImpl">
+        <property name="runner" ref="runner" ></property>
+        <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+
+    <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
 <!--        <constructor-arg name="ds" ref="dataSource"></constructor-arg>-->
-<!--    </bean>-->
-<!--    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">-->
-<!--        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>-->
-<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"></property>-->
-<!--        <property name="user" value="root"></property>-->
-<!--        <property name="password" value="123456"></property>-->
-<!--    </bean>-->
+    </bean>
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <bean id="connectionUtils" class="kim.spe.utils.ConnectionUtils">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <bean id="txManager" class="kim.spe.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"></property>
+    </bean>
+
 
 </beans>

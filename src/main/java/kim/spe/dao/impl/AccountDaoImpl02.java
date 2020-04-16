@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2020/4/15 - 14:46
  * @description
  */
-@Repository("accountDao02")
+//@Repository("accountDao02")
 public class AccountDaoImpl02 implements IAccountDao {
     @Override
     public List<Account> findAllAccount() {
@@ -36,6 +36,11 @@ public class AccountDaoImpl02 implements IAccountDao {
     @Override
     public void deleteAccount(Integer accountId) {
 
+    }
+
+    @Override
+    public Account findAccountByName(String accountName) {
+        return null;
     }
 //    @Override
 //    public void saveAccount() {
